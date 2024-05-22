@@ -81,19 +81,18 @@ console.log("fff")
                const authToken = headers.get('Authorization');
                this.userserv.getroleemployee(us.email).subscribe(
                 res=>{
-              this.role=res[0].role
+              
 this.userserv.save( authToken,us.email,this.role)
 this.userserv.getuserbyemail(us.email).subscribe(
   res=>{
     this.use=res
-    if(this.role=='ENTR'){
+    if(this.use.roles[0].role=='ENTR'){
       if(localStorage.getItem('redirectUrl')!=undefined){
         const url=localStorage.getItem('redirectUrl')
       
         this.route.navigate([url]);
        }
        else{
-        
       this.route.navigate(['/pagepatron/'+this.use.id])
        }
     }
